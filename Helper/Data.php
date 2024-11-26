@@ -74,7 +74,7 @@ class Data extends AbstractHelper
     }
 
     public function getClientCountry() {
-        $this->getClientCountryFromIpinfo();
+        return $this->getClientCountryFromIpinfo();
     }
 
     public function getClientCountryFromIpinfo()
