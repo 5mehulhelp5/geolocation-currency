@@ -1,8 +1,8 @@
 {
   "name": "sanjeev-kr/geolocation-currency",
   "description": "Magento 2 module auto select currency as per mapping",
-  "version": "2.0.0",
-  "license": "Apache",
+  "version": "2.0.2",
+  "license": "Apache-2.0",
   "type": "magento2-module",
   "autoload": {
     "files": [
