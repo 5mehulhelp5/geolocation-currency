@@ -75,6 +75,12 @@ class Action
         $currentStoreId = $this->storeManager->getStore()->getId();
         $scopeStores = ScopeInterface::SCOPE_STORES;
 
+        $this->currencyHelper->writeDebug("SERVER DATA", $_SERVER);
+
+        if(method_exists($this->httpResponse, "getHeaders")) {
+            $this->currencyHelper->writeDebug("HEADERS", $this->httpResponse->getHeaders());
+        }
+
         if (!$this->scopeConfig->isSetFlag(CurrencyHelper::XML_CONFIG_SYSTEM_GEOLOCATION_ENABLED,
              $scopeStores, $currentStoreId)
             || $this->skipCurrencySetup()
