@@ -41,6 +41,8 @@ class Data extends AbstractHelper
     
     const XML_CONFIG_SYSTEM_GEOLOCATION_ENABLED = 'currency/general/enable';
     const XML_CONFIG_SYSTEM_GEOLOCATION_IPINFO_TOKEN = 'currency/general/ipinfo_token';
+    const XML_CONFIG_SYSTEM_GEOLOCATION_USE_SERVER = 'currency/general/use_server';
+    const XML_CONFIG_SYSTEM_GEOLOCATION_SERVER_KEY = 'currency/general/server_key';
     const XML_CONFIG_SYSTEM_GEOLOCATION_DEBUG  = 'currency/general/enable_debug';
     const XML_CONFIG_GENERAL_CURRENCY_OPTION_ALLOW  = 'currency/options/allow';
 
@@ -74,6 +76,17 @@ class Data extends AbstractHelper
     }
 
     public function getClientCountry() {
+
+        $useServer = $this->getConfig(self::XML_CONFIG_SYSTEM_GEOLOCATION_USE_SERVER);
+        $countryId = null;
+        if($useServer == "1"){
+            $serverKey = (string)$this->getConfig(self::XML_CONFIG_SYSTEM_GEOLOCATION_SERVER_KEY);
+            $countryId = (!empty($serverKey) && isset($_SERVER[$serverKey])) ? $_SERVER[$serverKey] : null;
+        }
+        if(!empty($countryId)){
+            return $countryId;
+        }
+
         return $this->getClientCountryFromIpinfo();
     }
 
